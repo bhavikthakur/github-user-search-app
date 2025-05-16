@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="./assets/images/favicon-32x32.png"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="./assets/css/reset.css" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="./assets/css/media.css" />
+    <script defer src="app.js"></script>
+    <title>Github user search app</title>
+  </head>
+  <body>
+    <main class="card">
+      <!-- -------------- HEADER SECTION ----------------  -->
+      <header class="card__header">
+        <h1 class="card__title">
+          <a href="#" class="card__logo">devfinder</a>
+        </h1>
+        <button class="card__btn" type="button" aria-label="Toggle theme">
+          <p class="card__btn-theme card__btn-theme--light">light</p>
+          <!-- Sun Icon -->
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            class="card__theme-img card__theme-img--light"
+            aria-hidden="true"
+          >
+            <path
+              d="M12 18a6 6 0 1 1 0-12 6 6 0 0 1 0 12zm0-1a5 5 0 1 0 0-10 5 5 0 0 0 0 10zM12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72 1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42m12.72-12.72 1.42-1.42"
+            />
+          </svg>
+
+          <p class="card__btn-theme card__btn-theme--dark inactive--theme">
+            dark
+          </p>
+
+          <!-- Moon Icon  -->
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            class="card__theme-img card__theme-img--dark inactive--theme"
+            aria-hidden="true"
+          >
+            <path
+              fill="currentColor"
+              d="M21 12.79A9 9 0 0 1 12.21 3 7 7 0 1 0 21 12.79z"
+            />
+          </svg>
+        </button>
+      </header>
+
+      <!-- ------------------ USER SEARCH SECTION ------------------  -->
+      <form class="card__form" novalidate>
+        <!-- Search Icon-->
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          class="card__search-icon"
+          aria-hidden="true"
+        >
+          <path
+            fill="currentColor"
+            d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 0 0 1.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 0 0-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 0 0 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+          />
+        </svg>
+
+        <input
+          type="search"
+          name="user"
+          id="user"
+          placeholder="Search GitHub username..."
+          class="card__search-input"
+          value=""
+          autocomplete="username"
+        />
+        <button class="card__search-btn" type="submit">Search</button>
+      </form>
+
+      <!-- ------------ HERO SECTION ------------------ -->
+      <div class="hero">
+        <div class="hero__img-container">
+          <img
+            src="./assets/images/octocat.png"
+            alt="A rounded display picture of GitHub user."
+            loading="lazy"
+            class="hero__img"
+          />
+        </div>
+
+        <section class="hero__primary">
+          <div class="hero__profile-container">
+            <div class="hero__primary-info">
+              <h2 class="hero__name">The octocat</h2>
+              <h3 class="hero__userid">@octocat</h3>
+            </div>
+            <p class="hero__join-date">Joined 25 Jan 2011</p>
+          </div>
+
+          <p class="hero__bio">This profile has no bio</p>
+          <section class="hero__social-container">
+            <div class="hero__social-info-container">
+              <h4 class="hero__social-title">Repos</h4>
+              <p
+                class="hero__social-description hero__social-description--repos"
+              >
+                8
+              </p>
+            </div>
+            <div class="hero__social-info-container">
+              <h4 class="hero__social-title">Followers</h4>
+              <p
+                class="hero__social-description hero__social-description--followers"
+              >
+                3938
+              </p>
+            </div>
+            <div class="hero__social-info-container">
+              <h4 class="hero__social-title">Following</h4>
+              <p
+                class="hero__social-description hero__social-description--following"
+              >
+                9
+              </p>
+            </div>
+          </section>
+          <footer class="hero__footer">
+            <div
+              class="hero__footer-container hero__footer-container--location"
+            >
+              <!-- Location Icon -->
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                class="hero__footer-icon hero__footer-icon--location"
+                aria-hidden="true"
+              >
+                <path
+                  fill="currentColor"
+                  d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"
+                />
+              </svg>
+              <a
+                href="#"
+                class="hero__footer-link hero__footer-link--location"
+                target="_self"
+                >San francisco</a
+              >
+            </div>
+            <div class="hero__footer-container">
+              <!-- Twitter Icon -->
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                class="hero__footer-icon hero__footer-icon--twitter"
+                aria-hidden="true"
+              >
+                <path
+                  fill="currentColor"
+                  d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"
+                />
+              </svg>
+              <a
+                href="#"
+                target="_blank"
+                class="hero__footer-link hero__footer-link--twitter"
+                >Octopat</a
+              >
+            </div>
+            <div class="hero__footer-container">
+              <!-- Blog Icon -->
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                class="hero__footer-icon hero__footer-icon--blog"
+                aria-hidden="true"
+              >
+                <path
+                  fill="currentColor"
+                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"
+                />
+              </svg>
+              <a
+                href="#"
+                target="_blank"
+                class="hero__footer-link hero__footer-link--blog"
+                >https://github.com</a
+              >
+            </div>
+            <div class="hero__footer-container hero__footer-container--company">
+              <!-- Company Icon -->
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                class="hero__footer-icon hero__footer-icon--company"
+                aria-hidden="true"
+              >
+                <path
+                  fill="currentColor"
+                  d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z"
+                />
+              </svg>
+              <a
+                href="#"
+                target="_self"
+                class="hero__footer-link hero__footer-link--company"
+                >@github</a
+              >
+            </div>
+          </footer>
+        </section>
+      </div>
+    </main>
+    <section class="hero modal">
+      <img
+        src="./assets/images/404 error lost in space.gif"
+        alt=""
+        class="modal__gif"
+      />
+      <h2 class="modal__title">User not found, try again!</h2>
+      <a href="#" class="modal__btn">Go back</a>
+    </section>
+  </body>
+</html>
