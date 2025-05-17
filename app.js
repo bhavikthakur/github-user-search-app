@@ -88,7 +88,7 @@ searchBtn.addEventListener("click", () => {
         const userName = result.name;
         const userID = result.login;
         const userBio = result.bio;
-        const userDOJ = result.created_at;
+        const userDOJ = formatGitHubDate(result.created_at);
         const userRepos = result.public_repos;
         const userFollowers = result.followers;
         const userFollowing = result.following;
@@ -97,9 +97,18 @@ searchBtn.addEventListener("click", () => {
         const userBlog = result.blog;
         const userCompany = result.company;
         const userAvatar = result.avatar_url;
+
+        // US Date format handler
+
+        function formatGitHubDate(isoDate) {
+          const date = new Date(isoDate);
+          const options = { day: "numeric", month: "short", year: "numeric" };
+          return `Joined ${date.toLocaleDateString("en-US", options)}`;
+        }
+
         name.innerText = userName;
         id.innerText = `@${userID}`;
-        // userDOJ.innerText = `Joined `
+        joinDate.innerText = userDOJ;
         bio.innerText = userBio ? userBio : "This profile has no bio.";
         repos.innerText = userRepos;
         followers.innerText = userFollowers;
@@ -126,6 +135,7 @@ searchBtn.addEventListener("click", () => {
           twitterEl.classList.remove("unavailable");
           twitterIcon.classList.remove("unavailable");
         }
+
         if (!userBlog) {
           blogEl.innerText = "Not available";
           blogEl.classList.add("unavailable");
@@ -157,7 +167,6 @@ searchBtn.addEventListener("click", () => {
 });
 // Joined 25 Jan 2011
 // 2022-11-23T18:53:57Z
-//telishreyas10 searched, blog icon disappears
 
 // show modal when user not found
 modalBtn.addEventListener("click", () => {

@@ -18,6 +18,7 @@
     --clr-social-accent: hsl(219, 39%, 13%);
     --clr--name-accent: hsl(219, 39%, 13%);
     --clr-card-shadow: box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    --clr--darkBtn-fill: hsl(217, 35%, 45%);
 
 
     /* ------FONT SIZE ----------  */
@@ -41,7 +42,7 @@
     --clr-social-bg: hsl(219, 39%, 13%);
     --clr-social-accent: hsl(227, 100%, 98%);
     --clr--name-accent: hsl(227, 100%, 98%);
-    --clr-card-shadow: box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+    --clr-card-shadow: none;
 }
 
 
@@ -130,14 +131,6 @@ h4 {
     -webkit-text-fill-color: var(--clr-body-accent) !important;
 }
 
-/* For dark mode  */
-.dark--mode #user:-webkit-autofill,
-.dark--mode #user:-webkit-autofill:hover,
-.dark--mode #user:-webkit-autofill:focus,
-.dark--mode #user:-webkit-autofill:active {
-    -webkit-box-shadow: 0 0 0 1000px var(--clr-white-100) inset !important;
-    -webkit-text-fill-color: var(--clr-blue-900) !important;
-}
 
 #user::placeholder {
     color: var(--clr-blue-300);
@@ -213,19 +206,42 @@ h4 {
 
 .card__btn-theme {
     transition: 0.15s color ease-in;
+
 }
 
-.card__btn:hover .card__btn-theme,
-.card__btn:hover .card__theme-img {
+.card__btn:hover .card__btn-theme--light,
+.card__btn:hover .card__theme-img--light {
     color: var(--clr-blue-300);
     stroke: var(--clr-blue-300);
 }
 
-.card__btn:focus .card__btn-theme,
-.card__btn:focus .card__theme-img {
+.card__btn:focus .card__btn-theme--light,
+.card__btn:focus .card__theme-img--light {
     color: var(--clr-blue-300);
     stroke: var(--clr-blue-300);
 }
+
+
+.card__btn-theme--dark,
+.card__theme-img--dark {
+    color: var(--clr--darkBtn-fill);
+    stroke: var(--clr--darkBtn-fill);
+}
+
+
+.card__btn:hover .card__btn-theme--dark,
+.card__btn:hover .card__theme-img--dark {
+    color: var(--clr-blue-900);
+    stroke: var(--clr-blue-900);
+}
+
+.card__btn:focus .card__btn-theme--dark,
+.card__btn:focus .card__theme-img--dark {
+    color: var(--clr-blue-900);
+    stroke: var(--clr-blue-900);
+}
+
+
 
 
 .card__search-btn {
@@ -275,11 +291,15 @@ h4 {
 .card__theme-img {
     height: 25px;
     width: 25px;
-    stroke: var(--clr-white-100);
-    fill: var(--clr-white-100);
+    fill: currentColor;
     transition: 0.15s stroke ease-in;
 }
 
+.card__theme-img--light {
+    stroke: var(--clr-white-100);
+    fill: none;
+    transition: 0.15s stroke ease-in;
+}
 
 .card__search-icon {
     width: 30px;
@@ -289,6 +309,8 @@ h4 {
 .hero__footer-icon {
     height: 20px;
     width: 20px;
+    min-width: 20px;
+    flex-shrink: 0;
     color: var(--clr-body-accent);
     transition: 0.15s color ease-in;
 }
@@ -437,10 +459,6 @@ h4 {
 
 
 
-
-
-
-
 /* ---------- DYNAMIC CLASSES-----------  */
 .inactive--theme {
     display: none;
@@ -448,7 +466,7 @@ h4 {
 
 
 .unavailable {
-    color: hsl(217, 20%, 51%);
+    color: var(--clr-blue-300);
     cursor: auto;
 }
 
