@@ -61,14 +61,9 @@ themeBtn.addEventListener("click", () => {
 
 // User search function
 searchBtn.addEventListener("click", () => {
-  let userInput = input.value;
-  if (!userInput.trim()) {
-    input.value = "Enter username";
-    input.classList.add("error__msg");
-  }
-
+  let userInput = input.value.trim();
+  if (isFetching) return;
   async function getUserInfo() {
-    if (isFetching) return;
     try {
       isFetching = true;
       searchBtn.classList.add("fetch__active");
@@ -76,11 +71,18 @@ searchBtn.addEventListener("click", () => {
       const GITHUB_API = "https://api.github.com/users/";
       const data = await fetch(`${GITHUB_API}${userInput}`);
       const result = await data.json();
-      if (result.status === "404" && result.message === "Not Found") {
+      if (!data.ok) {
         card.classList.add("inactive--theme");
         hiddenModal.classList.add("active");
         return;
       } else {
+        // US Date format handler
+        function formatGitHubDate(isoDate) {
+          const date = new Date(isoDate);
+          const options = { day: "numeric", month: "short", year: "numeric" };
+          return `Joined ${date.toLocaleDateString("en-US", options)}`;
+        }
+
         const userName = result.name;
         const userID = result.login;
         const userBio = result.bio;
@@ -93,14 +95,6 @@ searchBtn.addEventListener("click", () => {
         const userBlog = result.blog;
         const userCompany = result.company;
         const userAvatar = result.avatar_url;
-
-        // US Date format handler
-
-        function formatGitHubDate(isoDate) {
-          const date = new Date(isoDate);
-          const options = { day: "numeric", month: "short", year: "numeric" };
-          return `Joined ${date.toLocaleDateString("en-US", options)}`;
-        }
 
         name.innerText = userName;
         id.innerText = `@${userID}`;
