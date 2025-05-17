@@ -1,0 +1,65 @@
+:root {
+    /* ----------All colors----------------  */
+    --clr-blue-500: hsl(212, 100%, 50%);
+    --clr-blue-300: hsl(217, 20%, 51%);
+    --clr-blue-600: hsl(217, 35%, 45%);
+    --clr-blue-700: hsl(221, 41%, 20%);
+    --clr-blue-800: hsl(217, 21%, 21%);
+    --clr-blue-900: hsl(219, 39%, 13%);
+    --clr-blue-200: hsl(227, 100%, 98%);
+    --clr-white-100: hsl(0, 0%, 100%);
+    --clr-red-300: hsl(3, 100%, 69%);
+
+    /* ---------LIGHT MODE SETUP------------  */
+    --clr-body-bg: hsl(227, 100%, 98%);
+    --clr-body-accent: hsl(217, 35%, 45%);
+    --clr-card-bg: hsl(0, 0%, 100%);
+    --clr-social-bg: hsl(227, 100%, 98%);
+    --clr-social-accent: hsl(219, 39%, 13%);
+    --clr-name-accent: hsl(219, 39%, 13%);
+    --clr-card-shadow: box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    --clr-darkBtn-fill: hsl(217, 35%, 45%);
+    --clr--userId-hover: hsl(217, 35%, 45%);
+
+
+    /* ------FONT SIZE ----------  */
+    --font-size-body-sm: 0.95rem;
+    --font-size-body-md: 1.15rem;
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.85rem;
+    --font-size-md: 1.25rem;
+    --font-size-lg: 1.55rem;
+
+
+    /* ----------BORDER RADIUS----------  */
+    --radius-rounded-999: 50%;
+    --radius-md-8: 0.8em;
+}
+
+[data-theme="dark"] {
+    --clr-body-bg: hsl(219, 39%, 13%);
+    --clr-body-accent: hsl(227, 100%, 98%);
+    --clr-card-bg: hsl(221, 41%, 20%);
+    --clr-social-bg: hsl(219, 39%, 13%);
+    --clr-social-accent: hsl(227, 100%, 98%);
+    --clr-name-accent: hsl(227, 100%, 98%);
+    --clr-card-shadow: none;
+    --clr--userId-hover: hsl(227, 100%, 98%);
+}
+
+
+
+
+@font-face {
+    font-family: "space-mono";
+    src: url(../fonts/Space_Mono/spacemono-regular-webfont.woff2) format("woff2"),
+        url(../fonts/Space_Mono/spacemono-regular-webfont.woff) format("woff");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "space-mono";
+    src: url(../fonts/Space_Mono/spacemono-bold-webfont.woff2) format("woff2"),
+        url(../fonts/Space_Mono/spacemono-bold-webfont.woff) format("woff");
+    font-weight: 700;
+}

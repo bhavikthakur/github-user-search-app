@@ -35,6 +35,8 @@
 }
 
 
+/* ------------MEDIUM SCREEN SIZE -----------------  */
+
 @media (width > 600px) {
     .hero {
         padding: 2em;
@@ -85,7 +87,7 @@
 
 
 
-/* -----------EXTRA LARGE SCREENS ------------  */
+/* -----------LARGE AND EXTRA LARGE SCREENS ------------  */
 
 
 @media (width > 900px) {

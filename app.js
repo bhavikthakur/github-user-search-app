@@ -1,11 +1,8 @@
 // ALL VARIABLES
 const card = document.querySelector(".card");
 const themeBtn = document.querySelector(".card__btn");
-const header = document.querySelector(".card__header");
-const hero = document.querySelector(".hero");
 const hiddenModal = document.querySelector(".modal");
 const modalBtn = document.querySelector(".modal__btn");
-const logo = document.querySelector(".card__logo");
 const searchBtn = document.querySelector(".card__search-btn");
 const form = document.querySelector(".card__form");
 const input = document.querySelector("#user");
@@ -29,19 +26,11 @@ const blogIcon = document.querySelector(".hero__footer-icon--blog");
 const companyEl = document.querySelector(".hero__footer-link--company");
 const companyIcon = document.querySelector(".hero__footer-icon--company");
 const avatar = document.querySelector(".hero__img");
-const socialContainer = document.querySelector(".hero__social-container");
-const socialDescriptions = document.querySelectorAll(
-  ".hero__social-description"
-);
-const footerLinks = document.querySelectorAll(".hero__footer-link");
-const footerIcons = document.querySelectorAll(".hero__footer-icon");
-const themeBtns = document.querySelectorAll(".card__btn-theme");
-const themeIcons = document.querySelectorAll(".card__theme-img");
 const darkBtn = document.querySelector(".card__btn-theme--dark");
 const moonIcon = document.querySelector(".card__theme-img--dark");
 const lightBtn = document.querySelector(".card__btn-theme--light");
 const sunIcon = document.querySelector(".card__theme-img--light");
-
+let isFetching = false;
 // preventing form submission
 
 form.addEventListener("submit", (e) => {
@@ -70,13 +59,20 @@ themeBtn.addEventListener("click", () => {
   }
 });
 
-// user search function
-
+// User search function
 searchBtn.addEventListener("click", () => {
   let userInput = input.value;
-  input.value = "";
+  if (!userInput.trim()) {
+    input.value = "Enter username";
+    input.classList.add("error__msg");
+  }
+
   async function getUserInfo() {
+    if (isFetching) return;
     try {
+      isFetching = true;
+      searchBtn.classList.add("fetch__active");
+      input.value = "";
       const GITHUB_API = "https://api.github.com/users/";
       const data = await fetch(`${GITHUB_API}${userInput}`);
       const result = await data.json();
@@ -113,6 +109,7 @@ searchBtn.addEventListener("click", () => {
         repos.innerText = userRepos;
         followers.innerText = userFollowers;
         following.innerText = userFollowing;
+        id.setAttribute("href", `https://github.com/${userID}`);
         avatar.setAttribute("src", userAvatar);
         if (!userLocation) {
           locationEl.innerText = "Not available";
@@ -160,21 +157,23 @@ searchBtn.addEventListener("click", () => {
       }
     } catch (error) {
       alert("bad request, try again later");
+      console.log(error);
+    } finally {
+      isFetching = false;
+      searchBtn.classList.remove("fetch__active");
     }
   }
 
   getUserInfo();
 });
-// Joined 25 Jan 2011
-// 2022-11-23T18:53:57Z
 
-// show modal when user not found
+// show error modal when user not found
 modalBtn.addEventListener("click", () => {
   hiddenModal.classList.remove("active");
   card.classList.remove("inactive--theme");
 });
 
-// My avatar by default
+// My avatar by default on load
 window.addEventListener("load", () => {
   async function showDevImg() {
     const data = await fetch("https://api.github.com/users/bhavikthakur");

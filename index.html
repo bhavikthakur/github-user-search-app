@@ -9,6 +9,7 @@
       type="image/png"
     />
     <link rel="stylesheet" href="./assets/css/reset.css" />
+    <link rel="stylesheet" href="./assets/css/common.css" />
     <link rel="stylesheet" href="./assets/css/style.css" />
     <link rel="stylesheet" href="./assets/css/media.css" />
     <script defer src="app.js"></script>
@@ -19,7 +20,7 @@
       <!-- -------------- HEADER SECTION ----------------  -->
       <header class="card__header">
         <h1 class="card__title">
-          <a href="#" class="card__logo">devfinder</a>
+          <a href="./index.html" class="card__logo">devfinder</a>
         </h1>
         <button class="card__btn" type="button" aria-label="Toggle theme">
           <p class="card__btn-theme card__btn-theme--light">light</p>
@@ -75,7 +76,6 @@
           id="user"
           placeholder="Search GitHub username..."
           class="card__search-input"
-          value=""
           autocomplete="username"
         />
         <button class="card__search-btn" type="submit">Search</button>
@@ -96,7 +96,12 @@
           <div class="hero__profile-container">
             <div class="hero__primary-info">
               <h2 class="hero__name">Bhavik Thakur</h2>
-              <h3 class="hero__userid">@bhavikthakur</h3>
+              <a
+                class="hero__userid"
+                href="https://github.com/bhavikthakur"
+                target="_blank"
+                >@bhavikthakur</a
+              >
             </div>
             <p class="hero__join-date">Joined 25 Jan 2011</p>
           </div>
@@ -149,11 +154,8 @@
                   d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"
                 />
               </svg>
-              <a
-                href="#"
-                class="hero__footer-link hero__footer-link--location"
-                target="_self"
-                >India</a
+              <span class="hero__footer-link hero__footer-link--location"
+                >India</span
               >
             </div>
             <div class="hero__footer-container">
@@ -209,11 +211,8 @@
                   d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z"
                 />
               </svg>
-              <a
-                href="#"
-                target="_self"
-                class="hero__footer-link hero__footer-link--company"
-                >@github</a
+              <span class="hero__footer-link hero__footer-link--company"
+                >@github</span
               >
             </div>
           </footer>
