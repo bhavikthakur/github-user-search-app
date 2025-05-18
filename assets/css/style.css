@@ -162,8 +162,8 @@ h4 {
     stroke: var(--clr-blue-300);
 }
 
-.card__btn:focus .card__btn-theme--light,
-.card__btn:focus .card__theme-img--light {
+.card__btn:focus-visible .card__btn-theme--light,
+.card__btn:focus-visible .card__theme-img--light {
     color: var(--clr-blue-300);
     stroke: var(--clr-blue-300);
 }
@@ -182,8 +182,8 @@ h4 {
     stroke: var(--clr-blue-900);
 }
 
-.card__btn:focus .card__btn-theme--dark,
-.card__btn:focus .card__theme-img--dark {
+.card__btn:focus-visible .card__btn-theme--dark,
+.card__btn:focus-visible .card__theme-img--dark {
     color: var(--clr-blue-900);
     stroke: var(--clr-blue-900);
 }
@@ -205,7 +205,7 @@ h4 {
 }
 
 .card__search-btn:hover,
-.card__search-btn:focus {
+.card__search-btn:focus-visible {
     background-color: var(--clr-blue-900);
     outline: 2px solid var(--clr-blue-500)
 }
@@ -244,7 +244,6 @@ h4 {
 
 .card__theme-img--light {
     stroke: var(--clr-white-100);
-    fill: none;
     transition: 0.15s stroke ease-in;
 }
 

@@ -5,8 +5,8 @@
 
 A responsive GitHub user search application with light/dark mode toggle, inspired by a Frontend Mentor challenge. Search for any GitHub user and view their profile information, repositories, followers, and more.
 
-
 ## Live URL
+
 [GitHub User Search App](https://bhavikthakur.github.io/github-user-search-app/)
 
 ## Table of Contents
@@ -54,25 +54,27 @@ A responsive GitHub user search application with light/dark mode toggle, inspire
 1. Clone the repository:
    ```bash
    git clone https://github.com/bhavikthakur/github-user-search-app.git
+   ```
 2. Navigate to the project directory:
    cd github-user-search-app
 
 3. Open index.html in your browser:
    No build tools or dependencies required - works directly in the browser!
-   
+
 ## Credits
+
 Design Inspiration: Frontend Mentor Challenge <br>
 GitHub API: GitHub REST API v3 <br>
 Icons: Tabler Icons <br>
 Font: Space Mono <br>
 
-##  Connect With Me  
-👨‍💻 GitHub: [bhavikthakur](https://github.com/bhavikthakur)  <br>
-💼 LinkedIn: [Bhavik Thakur](https://www.linkedin.com/in/bhavik-thakur/)  <br>
-🐦 Twitter: [Bhavik Thakur](https://x.com/BhavikkThakur)  <br>
+## Connect With Me
 
+👨‍💻 GitHub: [bhavikthakur](https://github.com/bhavikthakur)  
+💼 LinkedIn: [Bhavik Thakur](https://www.linkedin.com/in/bhavik-thakur/)  
+🐦 Twitter: [Bhavik Thakur](https://x.com/BhavikkThakur)
 
-##  License 
+## License
+
 License
 This project is licensed under the MIT License - see the LICENSE file for details.
-
