@@ -92,18 +92,21 @@ async function getUserInfo() {
     } else {
       // variables to store user info for display
       userInput = input.value.trim();
-      const userName = result.name;
-      const userID = result.login;
-      const userBio = result.bio;
+
+      const {
+        name: userName,
+        login: userID,
+        bio: userBio,
+        public_repos: userRepos,
+        followers: userFollowers,
+        following: userFollowing,
+        location: userLocation,
+        twitter_username: userTwitter,
+        blog: userBlog,
+        company: userCompany,
+        avatar_url: userAvatar,
+      } = result;
       const userDOJ = formatGitHubDate(result.created_at);
-      const userRepos = result.public_repos;
-      const userFollowers = result.followers;
-      const userFollowing = result.following;
-      const userLocation = result.location;
-      const userTwitter = result.twitter_username;
-      const userBlog = result.blog;
-      const userCompany = result.company;
-      const userAvatar = result.avatar_url;
 
       // Show the user info on card
       name.innerText = userName;
