@@ -59,7 +59,7 @@ h4 {
     transition: 0.25s backgrund-color ease-in, 0.25s color ease-in;
 }
 
-#user:focus {
+#user:focus-visible {
     outline: none;
 }
 
@@ -90,8 +90,8 @@ h4 {
 }
 
 .hero__userid:hover,
-.hero___userid:focus {
-    color: var(--clr--userId-hover);
+.hero___userid:focus-visible {
+    color: var(--clr-userId-hover);
     text-decoration: 2px underline var(--clr-blue-500);
 }
 
@@ -206,7 +206,8 @@ h4 {
 
 .card__search-btn:hover,
 .card__search-btn:focus-visible {
-    background-color: var(--clr-blue-900);
+    background-color: var(--clr-body-bg);
+    color: var(--clr-body-accent);
     outline: 2px solid var(--clr-blue-500)
 }
 
@@ -220,7 +221,7 @@ h4 {
 }
 
 .modal__btn:hover,
-.modal__btn:focus {
+.modal__btn:focus-visible {
     background-color: transparent;
     outline: 2px solid var(--clr-blue-500);
 }
@@ -310,7 +311,7 @@ h4 {
     padding: 1.5em;
     border-radius: var(--radius-md-8);
     position: relative;
-    transition: 0.25s background-color ease-in;
+    transition: 0.25s background-color ease-in, 0.25s outline ease-in;
 }
 
 
@@ -382,7 +383,10 @@ h4 {
     gap: 1.5rem;
 }
 
-/* ----------- HIDDEN MODAL--------------  */
+
+
+
+/* ----------- HIDDEN ERROR MODAL--------------  */
 
 .modal {
     text-align: center;
@@ -400,17 +404,20 @@ h4 {
     z-index: 0;
     opacity: 0;
     padding-bottom: 2em;
-    transition: 0.15s opacity ease-in;
+    transition: 0.25s opacity ease-in;
 }
 
 
 
 
-/* ---------- DYNAMIC CLASSES-----------  */
-.inactive--theme {
+/* ---------- DYNAMIC CLASSES  IN JS-----------  */
+.inactive {
     display: none;
 }
 
+.opacity {
+    opacity: 1;
+}
 
 .unavailable {
     color: var(--clr-blue-300);
@@ -431,6 +438,16 @@ h4 {
 .fetch__active {
     cursor: not-allowed;
     pointer-events: none;
+    opacity: 0.5;
+}
+
+.placeholder-red::placeholder {
+    color: var(--clr-red-300) !important;
+    opacity: 1;
+}
+
+.card__form.error__outline {
+    outline: 2px solid var(--clr-red-300);
 }
 
 

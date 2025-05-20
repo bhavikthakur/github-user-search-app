@@ -31,140 +31,177 @@ const moonIcon = document.querySelector(".card__theme-img--dark");
 const lightBtn = document.querySelector(".card__btn-theme--light");
 const sunIcon = document.querySelector(".card__theme-img--light");
 let isFetching = false;
+let userInput = "";
 // preventing form submission
-
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
+form.addEventListener("submit", (evt) => {
+  evt.preventDefault();
 });
 
 // Dark & light mode handler
-
 themeBtn.addEventListener("click", () => {
   const html = document.documentElement;
   const isDarkTheme = html.getAttribute("data-theme") === "dark";
   if (isDarkTheme) {
     // Light Theme set
     html.removeAttribute("data-theme");
-    sunIcon.classList.add("inactive--theme");
-    lightBtn.classList.add("inactive--theme");
-    moonIcon.classList.remove("inactive--theme");
-    darkBtn.classList.remove("inactive--theme");
+    sunIcon.classList.add("inactive");
+    lightBtn.classList.add("inactive");
+    moonIcon.classList.remove("inactive");
+    darkBtn.classList.remove("inactive");
   } else {
-    // Dark theme set
+    // Dark theme sets
     html.setAttribute("data-theme", "dark");
-    sunIcon.classList.remove("inactive--theme");
-    lightBtn.classList.remove("inactive--theme");
-    moonIcon.classList.add("inactive--theme");
-    darkBtn.classList.add("inactive--theme");
+    sunIcon.classList.remove("inactive");
+    lightBtn.classList.remove("inactive");
+    moonIcon.classList.add("inactive");
+    darkBtn.classList.add("inactive");
   }
 });
 
+// US Date format handler
+function formatGitHubDate(isoDate) {
+  const date = new Date(isoDate);
+  const options = { day: "numeric", month: "short", year: "numeric" };
+  return `Joined ${date.toLocaleDateString("en-US", options)}`;
+}
+
+//  Get the user info and show result func
+async function getUserInfo() {
+  try {
+    if (!userInput) {
+      input.placeholder = "Enter username";
+      input.classList.add("placeholder-red");
+      form.classList.add("error__outline");
+      return;
+    }
+
+    input.placeholder = "Search GitHub username...";
+    input.classList.remove("placeholder-red");
+    form.classList.remove("error__outline");
+    input.value = "";
+
+    // API call to get the user info
+    const GITHUB_API = "https://api.github.com/users/";
+    const data = await fetch(`${GITHUB_API}${userInput}`);
+    const result = await data.json();
+    console.log(data, result);
+    if (!data.ok) {
+      card.classList.add("inactive");
+      hiddenModal.classList.add("active");
+      return;
+    } else {
+      // variables to store user info for display
+      userInput = input.value.trim();
+      const userName = result.name;
+      const userID = result.login;
+      const userBio = result.bio;
+      const userDOJ = formatGitHubDate(result.created_at);
+      const userRepos = result.public_repos;
+      const userFollowers = result.followers;
+      const userFollowing = result.following;
+      const userLocation = result.location;
+      const userTwitter = result.twitter_username;
+      const userBlog = result.blog;
+      const userCompany = result.company;
+      const userAvatar = result.avatar_url;
+
+      // Show the user info on card
+      name.innerText = userName;
+      id.innerText = `@${userID}`;
+      joinDate.innerText = userDOJ;
+      bio.innerText = userBio ? userBio : "This profile has no bio.";
+      repos.innerText = userRepos;
+      followers.innerText = userFollowers;
+      following.innerText = userFollowing;
+      id.setAttribute("href", `https://github.com/${userID}`);
+      avatar.setAttribute("src", userAvatar);
+      if (!userLocation) {
+        locationEl.innerText = "Not available";
+        locationEl.classList.add("unavailable");
+        locationIcon.classList.add("unavailable");
+      } else {
+        locationEl.innerText = userLocation;
+        locationEl.classList.remove("unavailable");
+        locationIcon.classList.remove("unavailable");
+      }
+      if (!userTwitter) {
+        twitterEl.innerText = "Not available";
+        twitterEl.classList.add("unavailable");
+        twitterIcon.classList.add("unavailable");
+        twitterEl.setAttribute("href", "#");
+        twitterEl.setAttribute("target", "_self");
+      } else {
+        twitterEl.innerText = userTwitter;
+        twitterEl.setAttribute("href", `https://x.com/${userTwitter}`);
+        twitterEl.classList.remove("unavailable");
+        twitterIcon.classList.remove("unavailable");
+      }
+
+      if (!userBlog) {
+        blogEl.innerText = "Not available";
+        blogEl.classList.add("unavailable");
+        blogIcon.classList.add("unavailable");
+        blogEl.setAttribute("href", "#");
+        blogEl.setAttribute("target", "_self");
+      } else {
+        blogEl.innerText = userBlog;
+        blogEl.setAttribute("href", `https://${userBlog}`);
+        blogEl.classList.remove("unavailable");
+        blogIcon.classList.remove("unavailable");
+      }
+      if (!userCompany) {
+        companyEl.innerText = "Not available";
+        companyEl.classList.add("unavailable");
+        companyIcon.classList.add("unavailable");
+      } else {
+        companyEl.innerText = userCompany;
+        companyEl.classList.remove("unavailable");
+        companyIcon.classList.remove("unavailable");
+      }
+    }
+  } catch (error) {
+    if (error instanceof TypeError && error.message === "Failed to fetch") {
+      alert("Network error, please check the network connection!");
+      return;
+    }
+    alert("Oops! Something went wrong. Try again.");
+    hiddenModal.classList.add("active");
+    card.classList.add("inactive");
+    console.log(`Error found : ${error}`);
+  } finally {
+    isFetching = false;
+    searchBtn.classList.remove("fetch__active");
+  }
+}
+
 // User search function
 searchBtn.addEventListener("click", () => {
-  let userInput = input.value.trim();
   if (isFetching) return;
-  async function getUserInfo() {
-    try {
-      isFetching = true;
-      searchBtn.classList.add("fetch__active");
-      input.value = "";
-      const GITHUB_API = "https://api.github.com/users/";
-      const data = await fetch(`${GITHUB_API}${userInput}`);
-      const result = await data.json();
-      if (!data.ok) {
-        card.classList.add("inactive--theme");
-        hiddenModal.classList.add("active");
-        return;
-      } else {
-        // US Date format handler
-        function formatGitHubDate(isoDate) {
-          const date = new Date(isoDate);
-          const options = { day: "numeric", month: "short", year: "numeric" };
-          return `Joined ${date.toLocaleDateString("en-US", options)}`;
-        }
-
-        const userName = result.name;
-        const userID = result.login;
-        const userBio = result.bio;
-        const userDOJ = formatGitHubDate(result.created_at);
-        const userRepos = result.public_repos;
-        const userFollowers = result.followers;
-        const userFollowing = result.following;
-        const userLocation = result.location;
-        const userTwitter = result.twitter_username;
-        const userBlog = result.blog;
-        const userCompany = result.company;
-        const userAvatar = result.avatar_url;
-
-        name.innerText = userName;
-        id.innerText = `@${userID}`;
-        joinDate.innerText = userDOJ;
-        bio.innerText = userBio ? userBio : "This profile has no bio.";
-        repos.innerText = userRepos;
-        followers.innerText = userFollowers;
-        following.innerText = userFollowing;
-        id.setAttribute("href", `https://github.com/${userID}`);
-        avatar.setAttribute("src", userAvatar);
-        if (!userLocation) {
-          locationEl.innerText = "Not available";
-          locationEl.classList.add("unavailable");
-          locationIcon.classList.add("unavailable");
-        } else {
-          locationEl.innerText = userLocation;
-          locationEl.classList.remove("unavailable");
-          locationIcon.classList.remove("unavailable");
-        }
-        if (!userTwitter) {
-          twitterEl.innerText = "Not available";
-          twitterEl.classList.add("unavailable");
-          twitterIcon.classList.add("unavailable");
-          twitterEl.setAttribute("href", "#");
-          twitterEl.setAttribute("target", "_self");
-        } else {
-          twitterEl.innerText = userTwitter;
-          twitterEl.setAttribute("href", `https://x.com/${userTwitter}`);
-          twitterEl.classList.remove("unavailable");
-          twitterIcon.classList.remove("unavailable");
-        }
-
-        if (!userBlog) {
-          blogEl.innerText = "Not available";
-          blogEl.classList.add("unavailable");
-          blogIcon.classList.add("unavailable");
-          blogEl.setAttribute("href", "#");
-          blogEl.setAttribute("target", "_self");
-        } else {
-          blogEl.innerText = userBlog;
-          blogEl.setAttribute("href", `https://${userBlog}`);
-          blogEl.classList.remove("unavailable");
-          blogIcon.classList.remove("unavailable");
-        }
-        if (!userCompany) {
-          companyEl.innerText = "Not available";
-          companyEl.classList.add("unavailable");
-          companyIcon.classList.add("unavailable");
-        } else {
-          companyEl.innerText = userCompany;
-          companyEl.classList.remove("unavailable");
-          companyIcon.classList.remove("unavailable");
-        }
-      }
-    } catch (error) {
-      alert("bad request, try again later");
-      console.log(error);
-    } finally {
-      isFetching = false;
-      searchBtn.classList.remove("fetch__active");
-    }
-  }
+  isFetching = true;
+  searchBtn.classList.add("fetch__active");
 
   getUserInfo();
 });
 
-// show error modal when user not found
+// display error on empty value
+function resetUserError() {
+  userInput = input.value.trim();
+  if (userInput) {
+    input.classList.remove("placeholder-red");
+    form.classList.remove("error__outline");
+  } else {
+    input.classList.add("placeholder-red");
+    form.classList.add("error__outline");
+  }
+}
+
+// dynamic error display
+input.addEventListener("input", () => resetUserError());
+
+// hide error modal on back btn
 modalBtn.addEventListener("click", () => {
   hiddenModal.classList.remove("active");
-  card.classList.remove("inactive--theme");
+  card.classList.remove("inactive");
 });
 
 // My avatar by default on load
